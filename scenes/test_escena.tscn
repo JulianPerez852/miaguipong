@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://b4uyg0ynmn07j"]
+
+[ext_resource type="PackedScene" uid="uid://c31tp5lebkc80" path="res://scenes/balls/fire_ball.tscn" id="1_mh4ws"]
+
+[node name="test_escena" type="Node2D"]
+
+[node name="fire_ball" parent="." instance=ExtResource("1_mh4ws")]
+position = Vector2(636, 495)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(396, -16, 642, -21, 1192, -24, 1333, -24, 1315, 1015, -51, 1081, -127, -26, 0, -5, -1, 964, 1281, 960, 1281, -2, 10, 0, 67, -14)

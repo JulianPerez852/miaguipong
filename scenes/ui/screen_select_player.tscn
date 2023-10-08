@@ -1,0 +1,179 @@
+[gd_scene load_steps=13 format=3 uid="uid://shd7r6n7q3o2"]
+
+[ext_resource type="Texture2D" uid="uid://b58c1q5sufdv0" path="res://assets/ui/color_logo.png" id="1_jqsio"]
+[ext_resource type="Script" path="res://scripts/ui/screen_select_player.gd" id="1_w2odu"]
+[ext_resource type="Texture2D" uid="uid://h0hnrtcasfoy" path="res://assets/figthers/racket_1_speed/raket_1_20x140.png" id="2_ynp6i"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_5eweo"]
+font_size = 46
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_22xo3"]
+atlas = ExtResource("2_ynp6i")
+region = Rect2(0, 0, 40, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lacwn"]
+atlas = ExtResource("2_ynp6i")
+region = Rect2(40, 0, 40, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_flan1"]
+atlas = ExtResource("2_ynp6i")
+region = Rect2(80, 0, 40, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_46sfl"]
+atlas = ExtResource("2_ynp6i")
+region = Rect2(120, 0, 40, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_01ai1"]
+atlas = ExtResource("2_ynp6i")
+region = Rect2(160, 0, 40, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a6c73"]
+atlas = ExtResource("2_ynp6i")
+region = Rect2(200, 0, 40, 160)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kp8cy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_22xo3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lacwn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_flan1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_46sfl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_01ai1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a6c73")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="LabelSettings" id="LabelSettings_nd1fi"]
+font_size = 41
+
+[node name="screen_select_player" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1.0
+offset_top = 5.0
+offset_right = 1.0
+offset_bottom = 5.0
+script = ExtResource("1_w2odu")
+
+[node name="ColorLogo" type="Sprite2D" parent="."]
+position = Vector2(639, 476)
+texture = ExtResource("1_jqsio")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 76.0
+offset_top = 58.0
+offset_right = 1196.0
+offset_bottom = 874.0
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 0
+offset_right = 1114.0
+offset_bottom = 143.0
+text = "Selección de personajes"
+label_settings = SubResource("LabelSettings_5eweo")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="character_1" type="Button" parent="Panel"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 10.0
+offset_top = -78.0
+offset_right = 264.0
+offset_bottom = 78.0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 31
+text = "
+
+speeeedo"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Panel/character_1"]
+position = Vector2(123, 61)
+rotation = 1.5708
+scale = Vector2(1.52973, 1.52973)
+sprite_frames = SubResource("SpriteFrames_kp8cy")
+autoplay = "default"
+frame_progress = 0.184404
+
+[node name="character_2" type="Button" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -127.0
+offset_top = -78.0
+offset_right = 127.0
+offset_bottom = 78.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "
+
+
+Speedo"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Panel/character_2"]
+position = Vector2(123, 61)
+rotation = 1.5708
+scale = Vector2(1.52973, 1.52973)
+sprite_frames = SubResource("SpriteFrames_kp8cy")
+autoplay = "default"
+frame_progress = 0.0370019
+
+[node name="character_3" type="Button" parent="Panel"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -264.0
+offset_top = -78.0
+offset_right = -10.0
+offset_bottom = 78.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 21
+text = "
+
+
+SPEeeeEeEDO"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Panel/character_3"]
+position = Vector2(123, 61)
+rotation = 1.5708
+scale = Vector2(1.52973, 1.52973)
+sprite_frames = SubResource("SpriteFrames_kp8cy")
+autoplay = "default"
+frame_progress = 0.624807
+
+[node name="player_select" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 372.0
+offset_top = 153.0
+offset_right = 723.0
+offset_bottom = 283.0
+text = "Selección player 1"
+label_settings = SubResource("LabelSettings_nd1fi")
+
+[connection signal="pressed" from="Panel/character_1" to="." method="_on_character_1_pressed"]
+[connection signal="pressed" from="Panel/character_2" to="." method="_on_character_2_pressed"]
+[connection signal="pressed" from="Panel/character_3" to="." method="_on_character_3_pressed"]

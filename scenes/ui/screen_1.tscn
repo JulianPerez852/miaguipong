@@ -1,0 +1,248 @@
+[gd_scene load_steps=20 format=3 uid="uid://cigk8wcvm0uf3"]
+
+[ext_resource type="Script" path="res://scripts/ui/screen_1.gd" id="1_htk08"]
+[ext_resource type="Texture2D" uid="uid://qwdeqefv4yg5" path="res://assets/ui/logo.png" id="2_bhnax"]
+[ext_resource type="Texture2D" uid="uid://b58c1q5sufdv0" path="res://assets/ui/color_logo.png" id="2_raiad"]
+[ext_resource type="Texture2D" uid="uid://b1c1tboqdl73e" path="res://assets/ui/rebote_logo.png" id="3_p6kbp"]
+[ext_resource type="AudioStream" uid="uid://bogukg615enl6" path="res://assets/ui/Recording.mp3" id="5_iaigp"]
+[ext_resource type="AudioStream" uid="uid://j86qmegymvpx" path="res://assets/ui/pelotas.mp3" id="6_d2x6j"]
+[ext_resource type="AudioStream" uid="uid://bl7gqhg3hhl4d" path="res://assets/ui/pong.mp3" id="7_b783h"]
+
+[sub_resource type="Animation" id="Animation_dfl21"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("base_color:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_l6sev"]
+resource_name = "initiation"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("base_color:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_hm7vv"]
+resource_name = "logo_appear"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_y0v1y"]
+_data = {
+"RESET": SubResource("Animation_dfl21"),
+"initiation": SubResource("Animation_l6sev"),
+"logo_appear": SubResource("Animation_hm7vv")
+}
+
+[sub_resource type="Animation" id="Animation_p2n8o"]
+resource_name = "get_bounce"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1wqmh"]
+_data = {
+"get_bounce": SubResource("Animation_p2n8o")
+}
+
+[sub_resource type="Animation" id="Animation_ea16i"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.1, 0.1)]
+}
+
+[sub_resource type="Animation" id="Animation_5pgnd"]
+resource_name = "get_in"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 0.450625),
+"update": 0,
+"values": [Vector2(0.1, 0.1), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lrus5"]
+_data = {
+"RESET": SubResource("Animation_ea16i"),
+"get_in": SubResource("Animation_5pgnd")
+}
+
+[sub_resource type="Animation" id="Animation_dnppp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_4gb5n"]
+resource_name = "transition"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0, 0, 0, 1), Color(1, 1, 1, 1), Color(0.984314, 0.65098, 0.533333, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gxoux"]
+_data = {
+"RESET": SubResource("Animation_dnppp"),
+"transition": SubResource("Animation_4gb5n")
+}
+
+[node name="screen_1" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_htk08")
+
+[node name="base_color" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0)
+
+[node name="ColorLogo" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(643, 482)
+texture = ExtResource("2_raiad")
+
+[node name="animation" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_y0v1y")
+}
+
+[node name="ReboteLogo" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(638, 479)
+texture = ExtResource("3_p6kbp")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ReboteLogo"]
+libraries = {
+"": SubResource("AnimationLibrary_1wqmh")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(636.667, 483)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_bhnax")
+
+[node name="anim_logo" type="AnimationPlayer" parent="Sprite2D"]
+libraries = {
+"": SubResource("AnimationLibrary_lrus5")
+}
+
+[node name="color_animated" type="ColorRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="anim" type="AnimationPlayer" parent="color_animated"]
+libraries = {
+"": SubResource("AnimationLibrary_gxoux")
+}
+
+[node name="backgroun_sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_iaigp")
+volume_db = -10.0
+pitch_scale = 1.1
+
+[node name="balls" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_d2x6j")
+volume_db = -10.0
+
+[node name="start_vs_cpu" type="Button" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 149.0
+offset_top = 680.0
+offset_right = 483.0
+offset_bottom = 756.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0.576471, 0.25098, 0.376471, 1)
+theme_override_colors/font_hover_color = Color(0.603922, 0.843137, 0.956863, 1)
+theme_override_font_sizes/font_size = 46
+text = "Vs CPU"
+
+[node name="start_vs_player" type="Button" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 150.0
+offset_top = 773.0
+offset_right = 484.0
+offset_bottom = 849.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0.576471, 0.25098, 0.376471, 1)
+theme_override_colors/font_hover_color = Color(0.603922, 0.843137, 0.956863, 1)
+theme_override_font_sizes/font_size = 46
+text = "Vs Player"
+
+[node name="exit" type="Button" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 150.0
+offset_top = 866.0
+offset_right = 347.0
+offset_bottom = 942.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0.576471, 0.25098, 0.376471, 1)
+theme_override_colors/font_hover_color = Color(0.603922, 0.843137, 0.956863, 1)
+theme_override_font_sizes/font_size = 46
+text = "Exit"
+
+[node name="select_sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_b783h")
+
+[connection signal="pressed" from="start_vs_player" to="." method="_on_start_vs_player_pressed"]
+[connection signal="pressed" from="exit" to="." method="_on_exit_pressed"]
